@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
-const service = require("./service")
 const BaseURL = "https://tina-baby-shower-game.herokuapp.com";
 export default function TestStock(){
     const instance = axios.create({
@@ -12,7 +11,7 @@ export default function TestStock(){
         },
     });
 
-    const [status, setStatus] = useState("idle");
+    const [,setStatus] = useState("idle");
     const [stockPrices, setStockPrices] = useState([]);
 
 
@@ -32,7 +31,7 @@ export default function TestStock(){
         instance.get(`/stocks`)
             .then((res) => (res.status === 200 ? res.json() : setStatus("rejected")))
             .then((result) => setStockPrices(result.data))
-            .catch((err) => setStatus("rejected"));
+            .catch(() => setStatus("rejected"));
     };
     const updateStockPrices = (data) => {
         const parsedData = JSON.parse(data);
